@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
+import { getRubbishCollectionDay } from './dcc';
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,7 +16,14 @@ if (process.env.NODE_ENV === 'production') {
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res, next) => {
-   res.json({hello: 'world'});
+   const address = req.query.address;
+   getRubbishCollectionDay(address).then(result => {
+      if (!result) return res.sendStatus(404);
+      return res.json(result);
+   }).catch(error => {
+      console.error(error.stack || error);
+      return res.sendStatus(500);
+   });
 });
 
 app.listen(port, () => {
