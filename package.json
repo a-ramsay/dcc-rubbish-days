@@ -1,5 +1,5 @@
 {
-   "name": "ts-server-template",
+   "name": "dcc-rubbish-days",
    "version": "1.0.0",
    "private": true,
    "dependencies": {
@@ -12,7 +12,7 @@
       "start": "node dist/index.js",
       "build": "tsc",
       "d-build": "docker-compose build",
-      "d-run": "docker-compose run --rm --service-ports ts-server-template"
+      "d-run": "docker-compose run --rm --service-ports dcc-rubbish-days"
    },
    "devDependencies": {
       "@types/body-parser": "^1.17.1",
