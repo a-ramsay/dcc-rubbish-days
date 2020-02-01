@@ -1,8 +1,5 @@
 service:
   name: dcc-rubbish-days
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
 
 custom:
   webpack:
