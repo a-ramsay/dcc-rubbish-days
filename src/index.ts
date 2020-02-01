@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import { getRubbishCollectionDay } from './dcc';
+import serverless from 'serverless-http';
 
 const app = express();
 app.use(bodyParser.json());
@@ -29,3 +30,5 @@ app.get('/', (req, res, next) => {
 app.listen(port, () => {
    console.log(`Server listening on port ${port}`);
 });
+
+module.exports.handler = serverless(app);
