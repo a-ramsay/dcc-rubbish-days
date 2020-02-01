@@ -1,6 +1,7 @@
 import fetch, { Headers } from 'node-fetch';
 import { DateTime } from 'luxon';
 import * as AWS from 'aws-sdk';
+import { URLSearchParams } from 'url';
 
 const apiUrl = 'https://apps.dunedin.govt.nz/arcgis/rest/services/Public/Refuse_Collection_Property/MapServer/find';
 const tableName = process.env.CACHE_TABLE_NAME || 'rubbishCache';
@@ -72,13 +73,14 @@ async function checkCache(address: string) {
 
 async function writeCache(address: string, results: any) {
    if (process.env.DISABLE_CACHE) return;
-   const timestamp = Math.round(new Date().getTime() / 1000)
+   const endOfDay = DateTime.local().setZone('Pacific/Auckland').endOf('day');
+   const timestamp = Math.round(endOfDay.toSeconds());
    await dynamoDb.put({
       TableName: tableName,
       Item: {
          address,
          results,
-         ttl: timestamp + 24*60*60
+         ttl: timestamp // Expire cache at midnight
       }
    }).promise();
 }

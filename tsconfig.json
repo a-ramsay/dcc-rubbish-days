@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "lib": ["es2017"],
+    "module": "commonjs",
     "removeComments": true,
     "moduleResolution": "node",
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "noUnusedParameters": false,
     "sourceMap": true,
-    "target": "es2017",
+    "target": "es6",
     "outDir": "lib",
     "esModuleInterop": true,
     "noImplicitAny": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
-  "include": ["src"],
+  "include": ["src", "handler.ts"],
   "exclude": [
     "node_modules/**/*",
     ".serverless/**/*",
