@@ -18,5 +18,9 @@ jobs:
         node-version: '12.x'
     - run: npm install
     - run: npm run build
+    - run: npm run deploy-production
       env:
         CI: true
+        AWS_REGION: ap-southeast-2
+        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
