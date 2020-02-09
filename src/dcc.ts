@@ -94,9 +94,10 @@ function formatBinName(currentWeek: "b" | "y") {
 }
 
 function beforeCollectionDay(collectionDay: number) {
+   const systemUpdateDay = 6;
    const date = DateTime.local().setZone('Pacific/Auckland');
    const currentWeekDay = date.weekday;
-
+   if (currentWeekDay >= systemUpdateDay) return true;
    if (currentWeekDay <= collectionDay) return true;
    return false;
 }
