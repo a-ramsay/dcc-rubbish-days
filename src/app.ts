@@ -11,7 +11,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('/', addressValidationRules(), validate, (req: Request, res: Response) => {
-   const address = req.query.address;
+   const address = req.query.address as string;
    getRubbishCollectionDay(address).then(result => {
       if (!result) return res.sendStatus(404);
       return res.json(result);
